@@ -3,17 +3,28 @@
 import unittest
 from models.base_model import BaseModel
 from datetime import datetime
+import os
 
 
 class TestBaseModel(unittest.TestCase):
     """Test cases for BaseModel class"""
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(cls):
         """Sets the class/obj"""
-        self.base_model = BaseModel()
-        self.base_model.id = "12345"
-        self.base_model.created_at = datetime.now()
-        self.base_model.updated_at = datetime.now()
+        cls.base_model = BaseModel()
+        try:
+            os.rename("file.json", "real.json")
+        except Exception:
+            pass
+
+    @classmethod
+    def tearDownClass(cls):
+        try:
+            os.remove("file.json")
+            os.rename("real.json", "file.json")
+        except Exception:
+            pass
 
     def test_save_method(self):
         """Test case for 'save' method"""
