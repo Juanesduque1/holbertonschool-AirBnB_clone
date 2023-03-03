@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-"""Class BaseModel that defines all common attrs/methods for other classes"""
+"""BaseModel class that defines all common attrs/methods for other classes"""
 import uuid
 from datetime import datetime
-from . import storage
+from models import storage
 
 
 class BaseModel:
