@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """Unittest for BaseModel class"""
 import unittest
+import os
 from models.base_model import BaseModel
 from datetime import datetime
-import os
 
 
 class TestBaseModel(unittest.TestCase):
@@ -11,7 +11,7 @@ class TestBaseModel(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        """Sets the class/obj"""
+        """Class method to open test's environment"""
         cls.base_model = BaseModel()
         try:
             os.rename("file.json", "test_file.json")
@@ -20,6 +20,7 @@ class TestBaseModel(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
+        """Class method to close test's environment"""
         try:
             os.remove("file.json")
             os.rename("test_file.json", "file.json")

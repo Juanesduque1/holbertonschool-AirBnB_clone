@@ -11,7 +11,7 @@ class TestFileStorage(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        """Sets the class/obj"""
+        """Class method to open test's environment"""
         cls.storage = FileStorage()
         try:
             os.rename(FileStorage._FileStorage__file_path, "test_file.json")
@@ -20,12 +20,9 @@ class TestFileStorage(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        """Removes JSON file after testing the other methods"""
+        """Class method to close test's environment"""
         try:
             os.remove(FileStorage._FileStorage__file_path)
-        except Exception:
-            pass
-        try:
             os.rename("test_file.json", FileStorage._FileStorage__file_path)
         except Exception:
             pass
